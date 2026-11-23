@@ -1,7 +1,11 @@
+
 name: Build Sandipani School APK
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -23,10 +27,13 @@ jobs:
           gradle-version: '8.7'
 
       - name: Build APK
+        working-directory: SandipaniSchoolKatangiAndroid
         run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Sandipani-School-Demo-APK
-          path: app/build/outputs/apk/debug/*.apk
+          path: 
+          SandipaniSchoolKatangiAndroid/app/build/
+          outputs/apk/debug/app-debug.apk
